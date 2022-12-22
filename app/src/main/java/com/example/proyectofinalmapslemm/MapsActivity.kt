@@ -27,6 +27,7 @@ import com.google.firebase.ktx.Firebase
 import java.util.*
 import kotlin.collections.ArrayList
 
+
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback,GoogleMap.OnMarkerClickListener {
 
     private lateinit var mMap: GoogleMap
@@ -35,7 +36,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback,GoogleMap.OnMarkerC
     private lateinit var  fusedLocationClient: FusedLocationProviderClient
     private var LOCACIONES: ArrayList<LatLng> = ArrayList<LatLng>()
     private var contadorLugares =1
-    private val database = Firebase.database()
+    private val database = Firebase.database(R.string.urlBD.toString())
+    private val referencia = database.reference
 
 
     companion object {
@@ -60,8 +62,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback,GoogleMap.OnMarkerC
         val buttonBorrar = findViewById<Button>(R.id.buttonBorrarTodo)
 
         buttonGuardar.setOnClickListener{
-            val database= Firebase.database("https://proyectofinalmapslemm-88012-default-rtdb.firebaseio.com/")
-            val referencia=database.reference
 
             LOCACIONES.forEach{
                 val data = referencia.push().child("lugares").setValue(it)
@@ -80,15 +80,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback,GoogleMap.OnMarkerC
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
     }
 
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
+
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 

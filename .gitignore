@@ -13,3 +13,4 @@
 .externalNativeBuild
 .cxx
 local.properties
+/.app/build/generated/res/google-services/debug/values

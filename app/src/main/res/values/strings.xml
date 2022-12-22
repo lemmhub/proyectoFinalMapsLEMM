@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Proyecto Final Maps LEMM</string>
     <string name="title_activity_maps">MapsActivity</string>
-    <string name="url_bd" translatable="false">https://proyectofinalmapslemm-88012-default-rtdb.firebaseio.com/</string>
-    <string name="api_key_maps" translatable="false">AIzaSyCWzD8pBTink6cvXXk9EflvL_JBlDFjFqY</string>
+    <string name="url_bd">https://proyectofinalmapslemm-88012-default-rtdb.firebaseio.com/</string>
+    <string name="api_key_maps" >AIzaSyCWzD8pBTink6cvXXk9EflvL_JBlDFjFqY</string>
 </resources>

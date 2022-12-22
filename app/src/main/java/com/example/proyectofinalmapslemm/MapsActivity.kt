@@ -36,7 +36,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback,GoogleMap.OnMarkerC
     private lateinit var  fusedLocationClient: FusedLocationProviderClient
     private var LOCACIONES: ArrayList<LatLng> = ArrayList<LatLng>()
     private var contadorLugares =1
-    private val database = Firebase.database(R.string.url_bd.toString())
+    private val database = Firebase.database("https://proyectofinalmapslemm-88012-default-rtdb.firebaseio.com/")
     private val referencia = database.reference
 
 
@@ -64,7 +64,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback,GoogleMap.OnMarkerC
         buttonGuardar.setOnClickListener{
 
             LOCACIONES.forEach{
-                val data = referencia.push().child("lugares").setValue(it)
+                referencia.push().child("lugares").setValue(it)
             }
             Toast.makeText(this,"Se enviaron $contadorLugares locaciones a Firebase",Toast.LENGTH_SHORT).show()
         }
@@ -72,7 +72,12 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback,GoogleMap.OnMarkerC
 
         //Métodos de borrado
         buttonBorrar.setOnClickListener {
+            Toast.makeText(this,"Se borraron $contadorLugares locaciones de Firebase",Toast.LENGTH_SHORT).show()
 
+            referencia.removeValue()
+            contadorLugares=0
+            LOCACIONES.clear()
+            mMap.clear()
         }
 
 
@@ -121,7 +126,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback,GoogleMap.OnMarkerC
 
     private fun placeMarkerOnMap(currentLatLng: LatLng) {
         val markerOptions = MarkerOptions().position(currentLatLng)
-        markerOptions.title("$currentLatLng")
+        markerOptions.title("$currentLatLng").draggable(true)
         mMap.addMarker(markerOptions)
 
     }

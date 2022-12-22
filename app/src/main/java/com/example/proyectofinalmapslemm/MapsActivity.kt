@@ -36,7 +36,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback,GoogleMap.OnMarkerC
     private lateinit var  fusedLocationClient: FusedLocationProviderClient
     private var LOCACIONES: ArrayList<LatLng> = ArrayList<LatLng>()
     private var contadorLugares =1
-    private val database = Firebase.database(R.string.urlBD.toString())
+    private val database = Firebase.database(R.string.url_bd.toString())
     private val referencia = database.reference
 
 
